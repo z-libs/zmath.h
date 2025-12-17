@@ -1,0 +1,32 @@
+
+name: Build and Sync
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Run Unit Tests
+        run: |
+          echo "Running C and C++ Test Suites..."
+          # Runs the 'test' target from your Makefile. 
+          # If it fails (non-zero exit), we print an error and exit.
+          make test || { echo "::error::Unit tests failed! Check the logs above for assertion errors."; exit 1; }
