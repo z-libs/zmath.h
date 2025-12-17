@@ -195,6 +195,8 @@ ZMATHDEF zvec3 zmath_v3_norm(zvec3 v);
 }
 #endif
 
+#endif //ZMATH_H
+
 #ifdef ZMATH_IMPLEMENTATION
 
 #ifdef __cplusplus
@@ -506,4 +508,3 @@ ZMATHDEF zvec3 zmath_v3_norm(zvec3 v)
 }
 
 #endif // ZMATH_IMPLEMENTATION
-#endif // ZMATH_H
